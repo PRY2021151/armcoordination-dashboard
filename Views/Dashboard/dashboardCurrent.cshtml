@@ -1,0 +1,582 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Affiliate Dashboard - SB Admin Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"
+          rel="stylesheet" />
+    <link href="~/resources/css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="~/resources/assets/img/favicon.png" />
+    <script data-search-pseudo-elements=""
+            defer=""
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+            crossorigin="anonymous"></script>
+</head>
+<body class="nav-fixed">
+    <nav class="
+        topnav
+        navbar navbar-expand
+        shadow
+        justify-content-between justify-content-sm-start
+        navbar-light
+        bg-white
+      "
+         id="sidenavAccordion">
+        <!-- Sidenav Toggle Button-->
+        <button class="
+          btn btn-icon btn-transparent-dark
+          order-1 order-lg-0
+          me-2
+          ms-lg-2
+          me-lg-0
+        "
+                id="sidebarToggle">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 class="feather feather-menu">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <!-- Navbar Brand-->
+        <!-- * * Tip * * You can use text or an image for your navbar brand.-->
+        <!-- * * * * * * When using an image, we recommend the SVG format.-->
+        <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
+        <a class="navbar-brand pe-3 ps-4 ps-lg-2" asp-controller="Home" asp-action="MainPage">arm coordination</a>
+        <!-- Navbar Search Input-->
+        <!-- * * Note: * * Visible only on and above the lg breakpoint-->
+        <!-- Navbar Items-->
+        <ul class="navbar-nav align-items-center ms-auto">
+            <li>
+                @(User.FindFirst("UserNames").Value +" "+ User.FindFirst("UserLastName").Value)
+                &nbsp; &nbsp;
+            </li>
+
+            <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle"
+                   id="navbarDropdownUserImage"
+                   href="javascript:void(0);"
+                   role="button"
+                   data-bs-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    <img class="img-fluid"
+                         src="~/resources/assets/img/illustrations/profiles/user.png" />
+                </a>
+                <div class="
+              dropdown-menu dropdown-menu-end
+              border-0
+              shadow
+              animated--fade-in-up
+            "
+                     aria-labelledby="navbarDropdownUserImage">
+                    <h6 class="dropdown-header d-flex align-items-center">
+                        <img class="dropdown-user-img"
+                             src="~/resources/assets/img/illustrations/profiles/user.png" />
+                        <div class="dropdown-user-details">
+                            <div class="dropdown-user-details-name">@(User.FindFirst("UserNames").Value +" "+ User.FindFirst("UserLastName").Value)</div>
+                            <div class="dropdown-user-details-email">@User.Identity.Name</div>
+                        </div>
+                    </h6>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-action="Logout" asp-controller="Account">
+                        <div class="dropdown-item-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="feather feather-log-out">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                        </div>
+                        Cerrar sesión
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sidenav shadow-right sidenav-light">
+                <div class="sidenav-menu">
+                    <div class="nav accordion" id="accordionSidenav">
+                        <div class="sidenav-menu-heading">Opciones</div>
+                        <!-- Sidenav Link (Charts)-->
+                        <a class="nav-link" asp-action="dashboardCurrent" asp-route-id=@ViewBag.idChild>
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Actualidad
+                        </a>
+                        <!-- Sidenav Link (Tables)-->
+                        <a class="nav-link" asp-action="dashboardHistory" asp-route-id=@ViewBag.idChild>
+                            <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                            Histórico
+                        </a>
+                    </div>
+
+                </div>
+                <!-- Sidenav Footer-->
+                <div class="sidenav-footer">
+                    <div class="sidenav-footer-content">
+                        <div class="sidenav-footer-subtitle">Logged in as:</div>
+                        <div class="sidenav-footer-title">@User.Identity.Name</div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <!-- Main page content-->
+                <div class="container-xl px-4 mt-5">
+                    <div class="
+                d-flex
+                justify-content-between
+                align-items-sm-center
+                flex-column flex-sm-row
+                mb-4
+              ">
+                        <div class="me-4 mb-3 mb-sm-0">
+                            <h1 class="mb-0">Rendimiento actual</h1>
+                            <div class="small">
+                                Se muestra la información recopilada en la última sesión de juego del niño.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="alert alert-success alert-icon" role="alert">
+                                <div class="alert-icon-aside">
+                                    <i data-feather="trending-up"></i>
+                                </div>
+                                <div class="alert-icon-content">
+                                    <h6 class="alert-heading">Reacción más rápida</h6>
+                                    @ViewBag.minimum_response milisegundos
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="alert alert-danger alert-icon" role="alert">
+                                <div class="alert-icon-aside">
+                                    <i data-feather="trending-down"></i>
+                                </div>
+                                <div class="alert-icon-content">
+                                    <h6 class="alert-heading">Reacción más lenta</h6>
+                                    @ViewBag.maximum_response milisegundos
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="alert alert-warning alert-icon" role="alert">
+                                <div class="alert-icon-aside">
+                                    <i data-feather="activity"></i>
+                                </div>
+                                <div class="alert-icon-content">
+                                    <h6 class="alert-heading">Reacción promedio</h6>
+                                    @ViewBag.average_response milisegundos
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr />
+                    </div>
+                    <br />
+
+
+                    <div class="row">
+                        <!-- Area chart example-->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <!-- Pie chart example-->
+                            <div class="card h-100">
+                                <div class="card-header">Brazo derecho</div>
+                                <div class="card-body">
+                                    <div class="chart-pie mb-4">
+                                        <div class="chartjs-size-monitor">
+                                            <div class="chartjs-size-monitor-expand">
+                                                <div class=""></div>
+                                            </div>
+                                            <div class="chartjs-size-monitor-shrink">
+                                                <div class=""></div>
+                                            </div>
+                                        </div>
+                                        <canvas id="right_arm"
+                                                width="588"
+                                                height="240"
+                                                class="chartjs-render-monitor"
+                                                style="display: block; width: 588px; height: 240px"></canvas>
+                                    </div>
+                                    <div class="list-group list-group-flush">
+
+                                        <div class="
+                              list-group-item
+                              d-flex
+                              align-items-center
+                              justify-content-between
+                              small
+                              px-0
+                              py-2
+                            ">
+                                            <div class="me-3">
+                                                <i class="fas fa-circle fa-sm me-1 text-blue"></i>
+                                                Fallos
+                                            </div>
+                                            <div class="fw-500 text-dark">@ViewBag.right_arm[1]</div>
+                                        </div>
+                                        <div class="
+                              list-group-item
+                              d-flex
+                              align-items-center
+                              justify-content-between
+                              small
+                              px-0
+                              py-2
+                            ">
+                                            <div class="me-3">
+                                                <i class="fas fa-circle fa-sm me-1 text-yellow"></i>
+                                                Aciertos
+                                            </div>
+                                            <div class="fw-500 text-dark">@ViewBag.right_arm[0]</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <!-- Pie chart example-->
+                            <div class="card h-100">
+                                <div class="card-header">Brazo izquierdo</div>
+                                <div class="card-body">
+                                    <div class="chart-pie mb-4">
+                                        <div class="chartjs-size-monitor">
+                                            <div class="chartjs-size-monitor-expand">
+                                                <div class=""></div>
+                                            </div>
+                                            <div class="chartjs-size-monitor-shrink">
+                                                <div class=""></div>
+                                            </div>
+                                        </div>
+                                        <canvas id="left_arm"
+                                                width="588"
+                                                height="240"
+                                                class="chartjs-render-monitor"
+                                                style="display: block; width: 588px; height: 240px"></canvas>
+                                    </div>
+                                    <div class="list-group list-group-flush">
+
+                                        <div class="
+                              list-group-item
+                              d-flex
+                              align-items-center
+                              justify-content-between
+                              small
+                              px-0
+                              py-2
+                            ">
+                                            <div class="me-3">
+                                                <svg class="
+                                  svg-inline--fa
+                                  fa-circle fa-w-16 fa-sm
+                                  me-1
+                                  text-purple
+                                "
+                                                     aria-hidden="true"
+                                                     focusable="false"
+                                                     data-prefix="fas"
+                                                     data-icon="circle"
+                                                     role="img"
+                                                     xmlns="http://www.w3.org/2000/svg"
+                                                     viewBox="0 0 512 512"
+                                                     data-fa-i2svg="">
+                                                    <path fill="currentColor"
+                                                          d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                                                </svg><!-- <i class="fas fa-circle fa-sm me-1 text-purple"></i> Font Awesome fontawesome.com -->
+                                                Fallos
+                                            </div>
+                                            <div class="fw-500 text-dark">@ViewBag.left_arm[1]</div>
+                                        </div>
+                                        <div class="
+                              list-group-item
+                              d-flex
+                              align-items-center
+                              justify-content-between
+                              small
+                              px-0
+                              py-2
+                            ">
+                                            <div class="me-3">
+                                                <svg class="
+                                  svg-inline--fa
+                                  fa-circle fa-w-16 fa-sm
+                                  me-1
+                                  text-green
+                                "
+                                                     aria-hidden="true"
+                                                     focusable="false"
+                                                     data-prefix="fas"
+                                                     data-icon="circle"
+                                                     role="img"
+                                                     xmlns="http://www.w3.org/2000/svg"
+                                                     viewBox="0 0 512 512"
+                                                     data-fa-i2svg="">
+                                                    <path fill="currentColor"
+                                                          d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                                                </svg><!-- <i class="fas fa-circle fa-sm me-1 text-green"></i> Font Awesome fontawesome.com -->
+                                                Aciertos
+                                            </div>
+                                            <div class="fw-500 text-dark">@ViewBag.left_arm[0]</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <!-- Pie chart example-->
+                            <div class="card h-100">
+                                <div class="card-header">Porcentaje de precisión</div>
+                                <div class="card-body">
+                                    <div class="chart-pie mb-4">
+                                        <div class="chartjs-size-monitor">
+                                            <div class="chartjs-size-monitor-expand">
+                                                <div class=""></div>
+                                            </div>
+                                            <div class="chartjs-size-monitor-shrink">
+                                                <div class=""></div>
+                                            </div>
+                                        </div>
+                                        <canvas id="both_arms"
+                                                width="588"
+                                                height="240"
+                                                class="chartjs-render-monitor"
+                                                style="display: block; width: 588px; height: 240px"></canvas>
+                                    </div>
+                                    <div class="list-group list-group-flush">
+                                        <div class="
+                              list-group-item
+                              d-flex
+                              align-items-center
+                              justify-content-between
+                              small
+                              px-0
+                              py-2
+                            ">
+                                            <div class="me-3">
+                                                <i class="fas fa-circle fa-sm me-1 text-teal"></i>
+                                                Error
+                                            </div>
+                                            <div class="fw-500 text-dark">@ViewBag.not_accuracy %</div>
+                                        </div>
+                                        <div class="
+                              list-group-item
+                              d-flex
+                              align-items-center
+                              justify-content-between
+                              small
+                              px-0
+                              py-2
+                            ">
+                                            <div class="me-3">
+                                                <i class="fas fa-circle fa-sm me-1 text-pink"></i>
+                                                Precisión
+                                            </div>
+                                            <div class="fw-500 text-dark">@ViewBag.accuracy %</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <br /> <br />
+
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+    <script src="~/resources/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"
+            crossorigin="anonymous"></script>
+
+    <script>
+        (Chart.defaults.global.defaultFontFamily = "Metropolis"),
+            '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = "#858796";
+
+        var hits_right_arm = @ViewBag.right_arm[0];
+        var failures_right_arm = @ViewBag.right_arm[1];
+
+        // Pie Chart Example
+        var ctx = document.getElementById("right_arm");
+        var myPieChart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: ["Aciertos", "Fallos"],
+                datasets: [{
+                    data: [hits_right_arm, failures_right_arm],
+                    backgroundColor: [
+                        "rgba(244, 161, 0, 1)",
+                        "rgba(0, 97, 242, 1)"
+                    ],
+                    hoverBackgroundColor: [
+                        "rgba(244, 161, 0, 0.9)",
+                        "rgba(0, 97, 242, 0.9)"
+                    ],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)"
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: "#dddfeb",
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10
+                },
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 70
+            }
+        });
+
+    </script>
+
+    <script>
+        (Chart.defaults.global.defaultFontFamily = "Metropolis"),
+            '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = "#858796";
+
+        var hits_left_arm = @ViewBag.left_arm[0];
+        var failures_left_arm = @ViewBag.left_arm[1];
+
+        // Pie Chart Example
+        var ctx = document.getElementById("left_arm");
+        var myPieChart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: ["Aciertos", "Fallos"],
+                datasets: [{
+                    data: [hits_left_arm, failures_left_arm],
+                    backgroundColor: [
+                        "rgba(0, 172, 105, 1)",
+                        "rgba(88, 0, 232, 1)"
+                    ],
+                    hoverBackgroundColor: [
+                        "rgba(0, 172, 105, 0.9)",
+                        "rgba(88, 0, 232, 0.9)"
+                    ],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)"
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: "#dddfeb",
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10
+                },
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 70
+            }
+        });
+
+    </script>
+
+    <script>
+        (Chart.defaults.global.defaultFontFamily = "Metropolis"),
+            '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = "#858796";
+
+        var hits_both_arms = @ViewBag.accuracy;
+        var failures_both_arms = @ViewBag.not_accuracy;
+
+        // Pie Chart Example
+        var ctx = document.getElementById("both_arms");
+        var myPieChart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: ["Precisión", "Error"],
+                datasets: [{
+                    data: [hits_both_arms, failures_both_arms],
+                    backgroundColor: [
+                        "rgba(227, 0, 89, 1)",
+                        "rgba(0, 186, 148, 1)"
+                    ],
+                    hoverBackgroundColor: [
+                        "rgba(227, 0, 89, 0.9)",
+                        "rgba(0, 186, 148, 0.9)"
+                    ],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)"
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: "#dddfeb",
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10
+                },
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 70
+            }
+        });
+
+    </script>
+
+</body>
+</html>

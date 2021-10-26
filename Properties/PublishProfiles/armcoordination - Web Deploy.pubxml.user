@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo se usa en el proceso de publicación y empaquetado del proyecto web. Para personalizar el comportamiento de este proceso,
+edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 para obtener más información. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArruVh3tLR0ylzraBW4KsfAAAAAACAAAAAAAQZgAAAAEAACAAAACiN8SK5OJgGM3mXke5uyK0FXRKscnNUxNHitKZ+x1B7AAAAAAOgAAAAAIAACAAAABrXV4XZuY+VFmQhldf111hbYbh9+MJ98WPwsbMCAHQKIAAAADIPG2xsty08F9HSvK7R7Hsk6uqYpkSiSyzsIn+6svI8ISVtw98Xk0RLkU1v23qc1frjHdDmMvINqKTApQ6LIiPLtcv5FKxs//GHx/0xMC+yuI+faSDqJXW7hsubetyE675DAGUHronzuudB1H5eQMYGSOZItJwrbMzygpHhDQZtUAAAADOcWRo2EEuKM0f7PYZV1gQhhgJkBvWO1jke5uTJZKrfDgQNJYnJ8PZetGsa57Ui6Wh69UWC9ep0RfU99gBBP2y</EncryptedPassword>
+    <History>False|2021-09-23T06:10:14.4729021Z;True|2021-09-22T03:56:37.6872844-05:00;True|2021-09-21T22:13:33.8541557-05:00;True|2021-09-21T21:03:19.3629527-05:00;True|2021-09-21T19:06:26.5844774-05:00;False|2021-09-21T19:03:25.1473444-05:00;False|2021-09-21T18:56:46.0325591-05:00;False|2021-08-17T04:38:20.2699362-05:00;True|2021-08-17T04:33:02.3307840-05:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:serverpry2021151.database.windows.net,1433%3bInitial Catalog=db_armcoordination%3bPersist Security Info=False%3bUser ID=pry2021151%3bPassword=Dispraxia#1%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="armcoordination_dashboard.Data.armcoordinationContext">
+      <Value>Server=tcp:serverpry2021151.database.windows.net,1433%3bInitial Catalog=db_armcoordination%3bPersist Security Info=False%3bUser ID=pry2021151%3bPassword=Dispraxia#1%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo se usa en el proceso de publicación y empaquetado del proyecto web. Para personalizar el comportamiento de este proceso,
+edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 para obtener más información. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArruVh3tLR0ylzraBW4KsfAAAAAACAAAAAAAQZgAAAAEAACAAAAA/D4Tpz2ECQJNuvyNM5XFRmS1WRRHPQoQw+qF4mHNW6wAAAAAOgAAAAAIAACAAAABEN9G0WCrp7J7nOg4UK7XlROcF2whv0mtzkzjqJh6GFIAAAAD2zuRTrW8fwrq+WmouqhFVaEVMkisP7cctzcF/iQeWVTTJ1/CCOpyRYvkc2yyjfJORQigm/GRxXctnb4jgY6zco/OrYeKZJ+dNuKnS7zjbk1npbw/0YZrf91N92HQoHqbhcm+9aQJrOROnz1995GA+F9ydnoUBb+mLw14plm31xkAAAAB0CgYEWrwkWIt6wh6jYAJqnflecvs3lCQ6r3nusvaajFaGydf7LxhaSRbLrVlrUI3TFNS9UBAJ/U8S/0i4qPVQ</EncryptedPassword>
+    <History>False|2021-08-17T10:18:07.3806488Z;False|2021-08-17T05:17:00.6789294-05:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:serverpry2021151.database.windows.net,1433%3bInitial Catalog=db_armcoordination%3bPersist Security Info=False%3bUser ID=pry2021151%3bPassword=Dispraxia#1%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="armcoordination_dashboard.Data.armcoordinationContext">
+      <Value>Server=tcp:serverpry2021151.database.windows.net,1433%3bInitial Catalog=db_armcoordination%3bPersist Security Info=False%3bUser ID=pry2021151%3bPassword=Dispraxia#1%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
